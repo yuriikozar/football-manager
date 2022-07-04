@@ -14,7 +14,8 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long commission;
+    private String name;
+    private int commission;
     private BigDecimal bank;
 
     public Long getId() {
@@ -25,11 +26,19 @@ public class Team {
         this.id = id;
     }
 
-    public Long getCommission() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCommission() {
         return commission;
     }
 
-    public void setCommission(Long commission) {
+    public void setCommission(int commission) {
         this.commission = commission;
     }
 
@@ -45,6 +54,7 @@ public class Team {
     public String toString() {
         return new StringJoiner(", ", Team.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
+                .add("name='" + name + "'")
                 .add("commission=" + commission)
                 .add("bank=" + bank)
                 .toString();
