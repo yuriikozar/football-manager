@@ -18,7 +18,6 @@ public class DataFiller {
         this.teamService = teamService;
     }
 
-
     @PostConstruct
     public void inject() {
         Team realMadrid = new Team();
@@ -39,7 +38,6 @@ public class DataFiller {
         karpaty.setName("Karpary Lviv");
         teamService.add(karpaty);
 
-
         Player ronaldo = new Player();
         ronaldo.setAge(37);
         ronaldo.setExperience(264);
@@ -53,7 +51,6 @@ public class DataFiller {
         messi.setExperience(220);
         messi.setName("Lionel Messi");
         playerService.add(messi);
-
 
     }
 }

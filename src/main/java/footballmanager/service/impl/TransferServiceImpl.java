@@ -9,7 +9,6 @@ import footballmanager.service.TeamService;
 import footballmanager.service.TransferService;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,7 +50,8 @@ public class TransferServiceImpl implements TransferService {
         BigDecimal price = BigDecimal.valueOf(player.getExperience() * DEFAULT_PRICE)
                 .divide(BigDecimal.valueOf(player.getAge()), mathContext);
 
-        BigDecimal calculatedCommission = BigDecimal.valueOf((double) commission / 100).multiply(price);
+        BigDecimal calculatedCommission = BigDecimal.valueOf((double) commission
+                / 100).multiply(price);
         return price.add(calculatedCommission);
     }
 

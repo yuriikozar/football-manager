@@ -25,7 +25,9 @@ public class PlayerController {
     private final PlayerMapper playerMapper;
     private final TeamService teamService;
 
-    public PlayerController(PlayerService playerService, PlayerMapper playerMapper, TeamService teamService) {
+    public PlayerController(PlayerService playerService,
+                            PlayerMapper playerMapper,
+                            TeamService teamService) {
         this.playerService = playerService;
         this.playerMapper = playerMapper;
         this.teamService = teamService;

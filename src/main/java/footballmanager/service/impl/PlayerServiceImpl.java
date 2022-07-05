@@ -44,6 +44,4 @@ public class PlayerServiceImpl implements PlayerService {
     public List<Player> findAllByTeam(Team team) {
         return playerRepository.findAllByTeam(team);
     }
-
-
 }
