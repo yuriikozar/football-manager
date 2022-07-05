@@ -5,6 +5,7 @@ import footballmanager.dto.response.PlayerResponseDto;
 import footballmanager.mapper.PlayerMapper;
 import footballmanager.model.Player;
 import footballmanager.service.PlayerService;
+import footballmanager.service.TeamService;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
@@ -22,10 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlayerController {
     private final PlayerService playerService;
     private final PlayerMapper playerMapper;
+    private final TeamService teamService;
 
-    public PlayerController(PlayerService playerService, PlayerMapper playerMapper) {
+    public PlayerController(PlayerService playerService, PlayerMapper playerMapper, TeamService teamService) {
         this.playerService = playerService;
         this.playerMapper = playerMapper;
+        this.teamService = teamService;
     }
 
     @GetMapping("/{id}")
@@ -36,6 +39,13 @@ public class PlayerController {
     @PostMapping
     public PlayerResponseDto addPlayer(@RequestBody @Valid PlayerRequestDto dto) {
         return playerMapper.mapToDto(playerService.add(playerMapper.mapToModel(dto)));
+    }
+
+    @GetMapping("/team/{id}")
+    public List<PlayerResponseDto> getAllPlayersInCurrentTeam(@PathVariable Long id) {
+        return playerService.findAllByTeam(teamService.get(id)).stream()
+                .map(playerMapper::mapToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping

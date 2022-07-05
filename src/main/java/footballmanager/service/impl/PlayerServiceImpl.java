@@ -1,6 +1,7 @@
 package footballmanager.service.impl;
 
 import footballmanager.model.Player;
+import footballmanager.model.Team;
 import footballmanager.repository.PlayerRepository;
 import footballmanager.service.PlayerService;
 import java.util.List;
@@ -38,4 +39,11 @@ public class PlayerServiceImpl implements PlayerService {
     public void delete(Long id) {
         playerRepository.delete(playerRepository.getReferenceById(id));
     }
+
+    @Override
+    public List<Player> findAllByTeam(Team team) {
+        return playerRepository.findAllByTeam(team);
+    }
+
+
 }

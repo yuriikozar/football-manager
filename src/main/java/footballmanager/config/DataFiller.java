@@ -21,11 +21,11 @@ public class DataFiller {
 
     @PostConstruct
     public void inject() {
-        Team real = new Team();
-        real.setBank(BigDecimal.valueOf(100000000));
-        real.setCommission(10);
-        real.setName("Real Madrid");
-        teamService.add(real);
+        Team realMadrid = new Team();
+        realMadrid.setBank(BigDecimal.valueOf(100000000));
+        realMadrid.setCommission(10);
+        realMadrid.setName("Real Madrid");
+        teamService.add(realMadrid);
 
         Team barcelona = new Team();
         barcelona.setBank(BigDecimal.valueOf(1000000));
@@ -33,14 +33,26 @@ public class DataFiller {
         barcelona.setName("Barcelona");
         teamService.add(barcelona);
 
-        Player player = new Player();
-        player.setAge(33);
-        player.setExperience(86);
-        player.setTeam(real);
-        player.setName("Runaldu");
-        playerService.add(player);
+        Team karpaty = new Team();
+        karpaty.setCommission(7);
+        karpaty.setBank(BigDecimal.valueOf(1500000));
+        karpaty.setName("Karpary Lviv");
+        teamService.add(karpaty);
 
 
+        Player ronaldo = new Player();
+        ronaldo.setAge(37);
+        ronaldo.setExperience(264);
+        ronaldo.setTeam(realMadrid);
+        ronaldo.setName("Cristiano Ronaldo");
+        playerService.add(ronaldo);
+
+        Player messi = new Player();
+        messi.setTeam(barcelona);
+        messi.setAge(35);
+        messi.setExperience(220);
+        messi.setName("Lionel Messi");
+        playerService.add(messi);
 
 
     }
