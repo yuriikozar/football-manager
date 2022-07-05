@@ -28,7 +28,7 @@ public class DataFiller {
         teamService.add(real);
 
         Team barcelona = new Team();
-        barcelona.setBank(BigDecimal.valueOf(10000000));
+        barcelona.setBank(BigDecimal.valueOf(1000000));
         barcelona.setCommission(5);
         barcelona.setName("Barcelona");
         teamService.add(barcelona);

@@ -3,9 +3,11 @@ package footballmanager.controller;
 import footballmanager.dto.request.PlayerRequestDto;
 import footballmanager.dto.response.PlayerResponseDto;
 import footballmanager.mapper.PlayerMapper;
+import footballmanager.model.Player;
 import footballmanager.service.PlayerService;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +34,7 @@ public class PlayerController {
     }
 
     @PostMapping
-    public PlayerResponseDto addPlayer(@RequestBody PlayerRequestDto dto) {
+    public PlayerResponseDto addPlayer(@RequestBody @Valid PlayerRequestDto dto) {
         return playerMapper.mapToDto(playerService.add(playerMapper.mapToModel(dto)));
     }
 
@@ -48,9 +50,12 @@ public class PlayerController {
         playerService.delete(id);
     }
 
-    @PutMapping
-    public PlayerResponseDto update(@RequestBody PlayerRequestDto dto) {
-        return playerMapper.mapToDto(playerService.update(playerMapper.mapToModel(dto)));
+    @PutMapping("/{id}")
+    public PlayerResponseDto update(@PathVariable Long id,
+                                    @RequestBody @Valid PlayerRequestDto dto) {
+        Player player = playerMapper.mapToModel(dto);
+        player.setId(id);
+        return playerMapper.mapToDto(playerService.update(player));
     }
 
 }

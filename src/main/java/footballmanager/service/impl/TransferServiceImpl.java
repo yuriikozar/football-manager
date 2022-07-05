@@ -24,14 +24,17 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public void doTransfer(Transfer transfer) {
+    public String doTransfer(Transfer transfer) {
         Team buyer = teamService.get(transfer.getBuyerId());
         Team seller = teamService.get(transfer.getSellerId());
         Player player = playerService.get(transfer.getPlayerId());
+
+        validatePlayerTeam(player, seller);
+
         BigDecimal priceOfTransfer = calculatePriceOfTransfer(player, seller.getCommission());
-        if (priceOfTransfer.compareTo(seller.getBank()) > 0) {
-            throw new DataProcessingException("Not enough money on " + seller + " bank");
-        }
+
+        validateBuyerBank(priceOfTransfer, buyer);
+
         player.setTeam(buyer);
         buyer.setBank(buyer.getBank().subtract(priceOfTransfer));
         seller.setBank(seller.getBank().add(priceOfTransfer));
@@ -39,6 +42,8 @@ public class TransferServiceImpl implements TransferService {
         teamService.update(buyer);
         teamService.update(seller);
         playerService.update(player);
+
+        return "Transfer success :)";
     }
 
     private BigDecimal calculatePriceOfTransfer(Player player, int commission) {
@@ -50,5 +55,17 @@ public class TransferServiceImpl implements TransferService {
         return price.add(calculatedCommission);
     }
 
+    private void validateBuyerBank(BigDecimal priceOfTransfer, Team buyer) {
+        if (priceOfTransfer.compareTo(buyer.getBank()) > 0) {
+            throw new DataProcessingException("Not enough money on " + buyer
+                    + " bank");
+        }
+    }
 
+    private void validatePlayerTeam(Player player, Team seller) {
+        if (!player.getTeam().getId().equals(seller.getId())) {
+            throw new DataProcessingException("Incorrect input data with params: player: "
+                    + player + " and seller: " + seller);
+        }
+    }
 }
