@@ -17,6 +17,8 @@ This is an API that  gives you the opportunity to be a football manager.
 - You can use H2-DB to work with Data Base, url = `http://localhost:8080/h2-console/`
 , `passord = 'password'`, see application.properties
 ### Available endpoints:
+- `http://localhost:8080/teams/` -  CRUD OPERATIONS, `http://localhost:8080/teams/{id}` - Get by id, Delete by id
+- `http://localhost:8080/players/` - CRUD OPERATIONS, `http://localhost:8080/players/{id}` - Get by id, Delete by id
 
 - `http://localhost:8080/transfers/` - transfer operation, post mapping
 
@@ -34,6 +36,7 @@ playerId = Cristiano Ronaldo player.
 (Check DataFiller class, path - `src/main/java/footballmanager/config/DataFiller`)
 
   
+- `http://localhost:8080/players/team/{id}` - Get All players in current team
 ### Technologies used
 
 - Java 11
