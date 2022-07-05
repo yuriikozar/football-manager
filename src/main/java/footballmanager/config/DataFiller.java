@@ -21,16 +21,22 @@ public class DataFiller {
 
     @PostConstruct
     public void inject() {
-        Team team = new Team();
-        team.setBank(BigDecimal.valueOf(1000000));
-        team.setCommission(10);
-        team.setName("Real Madrid");
-        teamService.add(team);
+        Team real = new Team();
+        real.setBank(BigDecimal.valueOf(100000000));
+        real.setCommission(10);
+        real.setName("Real Madrid");
+        teamService.add(real);
+
+        Team barcelona = new Team();
+        barcelona.setBank(BigDecimal.valueOf(10000000));
+        barcelona.setCommission(5);
+        barcelona.setName("Barcelona");
+        teamService.add(barcelona);
 
         Player player = new Player();
         player.setAge(33);
         player.setExperience(86);
-        player.setTeam(team);
+        player.setTeam(real);
         player.setName("Runaldu");
         playerService.add(player);
 

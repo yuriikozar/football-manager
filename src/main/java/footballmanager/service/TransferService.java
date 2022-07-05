@@ -1,5 +1,7 @@
 package footballmanager.service;
 
-public interface TransferService {
+import footballmanager.dto.request.Transfer;
 
+public interface TransferService {
+    void doTransfer(Transfer transfer);
 }
