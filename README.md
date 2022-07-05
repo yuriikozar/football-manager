@@ -5,7 +5,7 @@
 This is an API that  gives you the opportunity to be a football manager.
 
 ### How to Run
-
+- Clone this project
 - Install Lombok plugin (or replace all @Data annotations with getters, setters and toString)
 - Run 'FootballManagerApplication' class
 - Use Postman to test how it works
