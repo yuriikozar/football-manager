@@ -14,7 +14,8 @@ This is an API that  gives you the opportunity to be a football manager.
 
       ![img_1.png](img_1.png)
 - DataBase injection happens in config/DataFiller class. You can create some custom teams and players there
-
+- You can use H2-DB to work with Data Base, url = `http://localhost:8080/h2-console/`
+, `passord = 'password'`, see application.properties
 ### Available endpoints:
 
 - `http://localhost:8080/transfers/` - transfer operation, post mapping
