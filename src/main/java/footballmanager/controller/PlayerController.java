@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -43,9 +44,9 @@ public class PlayerController {
         return playerMapper.mapToDto(playerService.add(playerMapper.mapToModel(dto)));
     }
 
-    @GetMapping("/team/{id}")
-    public List<PlayerResponseDto> getAllPlayersInCurrentTeam(@PathVariable Long id) {
-        return playerService.findAllByTeam(teamService.get(id)).stream()
+    @GetMapping("/by-team")
+    public List<PlayerResponseDto> getAllPlayersInCurrentTeam(@RequestParam Long teamId) {
+        return playerService.findAllByTeam(teamService.get(teamId)).stream()
                 .map(playerMapper::mapToDto)
                 .collect(Collectors.toList());
     }

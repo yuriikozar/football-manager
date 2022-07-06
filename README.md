@@ -10,9 +10,11 @@ This is an API that  gives you the opportunity to be a football manager.
 - Run 'FootballManagerApplication' class
 - Use Postman to test how it works
 
-    - Import postman collection using this [link](https://www.getpostman.com/collections/8eed88238774c611c62f)  
+    - Import postman collection using this [link](https://www.getpostman.com/collections/8eed88238774c611c62f)
 
       ![img_1.png](img_1.png)
+    
+
 - DataBase injection happens in config/DataFiller class. You can create some custom teams and players there
 - You can use H2-DB to work with Data Base, url = `http://localhost:8080/h2-console/`
 , `passord = 'password'`, see application.properties
@@ -33,10 +35,10 @@ sellerId = Real Madrid team,
 
 playerId = Cristiano Ronaldo player.
 
-(Check DataFiller class, path - `src/main/java/footballmanager/config/DataFiller`)
+(See DataFiller class, path - `src/main/java/footballmanager/config/DataFiller`)
 
   
-- `http://localhost:8080/players/team/{id}` - Get All players in current team
+- `http://localhost:8080/players/by-team?teamId=1` - Get All players in current team
 ### Technologies used
 
 - Java 11
@@ -46,8 +48,12 @@ playerId = Cristiano Ronaldo player.
 - Hibernate
 - H2 DB
 
+
+### **_Advice_**
+
+If spring does not start because port 8080 is busy, try restarting the computer
+
+
 Postman collection link: https://www.getpostman.com/collections/8eed88238774c611c62f
 
-
-
-
+[See how to import postman collection](https://www.youtube.com/watch?v=bzquMXmCLUQ&ab_channel=SlokamTechnologies)
