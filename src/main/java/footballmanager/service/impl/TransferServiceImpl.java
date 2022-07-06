@@ -10,6 +10,7 @@ import footballmanager.service.TransferService;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TransferServiceImpl implements TransferService {
@@ -23,6 +24,7 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
+    @Transactional
     public String doTransfer(Transfer transfer) {
         Team buyer = teamService.get(transfer.getBuyerId());
         Team seller = teamService.get(transfer.getSellerId());
